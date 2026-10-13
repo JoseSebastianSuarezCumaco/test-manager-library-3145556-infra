@@ -48,3 +48,18 @@ No hay prórroga: suban avances parciales con commits pequeños durante la prueb
 | [`test-manager-library-3145556-page`](https://github.com/code-sena/test-manager-library-3145556-page) | Sitio público estático de presentación |
 | [`test-manager-library-3145556-infra`](https://github.com/code-sena/test-manager-library-3145556-infra) | Contenedores, red, volúmenes y motor de base de datos vacío |
 | [`test-manager-library-3145556-tool`](https://github.com/code-sena/test-manager-library-3145556-tool) | Utilidades: sembrador de datos de demostración |
+
+
+## Author
+
+José Sebastián Suárez Cumaco, GitHub: [JoseSebastianSuarezCumaco](https://github.com/JoseSebastianSuarezCumaco).
+
+This repository is my fork of `code-sena/test-manager-library-3145556-infra`, developed for the SDD technical test of ficha ADSO 3145556.
+
+## Implementation status
+
+T-20 is partial: `docker compose up` starts an empty PostgreSQL 16 (no tables, no `CREATE TABLE` here, the schema comes from the API migration, ADR-001). The API and frontend containers are pending.
+
+How to run: copy `.env.example` to `.env`, set `POSTGRES_PASSWORD`, then run `docker compose up -d`.
+
+Evidence: `docker exec manager-library-db psql -U library -d library -c "SELECT count(*) FROM information_schema.tables WHERE table_schema NOT IN ('pg_catalog','information_schema');"` returns 0.
